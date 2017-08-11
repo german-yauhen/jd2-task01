@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd 
+ 	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop 
+   	http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<bean id="commandProvider" class="by.epam.library.utilities.commands.CommandProvider" />
+	
+	<bean id="dbResourceManager" class="by.epam.library.dao.connection.manager.DBResourceManager" />
+
+	<bean id="userServiceImpl" class="by.epam.library.service.implementation.UserServiceImpl" />
+	<bean id="bookServiceImpl" class="by.epam.library.service.implementation.BookServiceImpl" />
+	<bean id="initServiceImpl" class="by.epam.library.service.implementation.InitializationServiceImpl" />
+	<bean id="serviceFactory" class="by.epam.library.service.factory.ServiceFactory">
+		<property name="userService" ref="userServiceImpl" />
+		<property name="bookService" ref="bookServiceImpl" />
+		<property name="initializationService" ref="initServiceImpl" />
+	</bean>
+
+	<!--
+	<bean id="bookDaoImpl" class="by.epam.library.dao.implementations.BookDAOImpl" />
+	<bean id="initDaoImpl" class="by.epam.library.dao.implementations.InitializationDAOImpl" />
+	<bean id="userDaoImpl" class="by.epam.library.dao.implementations.UserDAOImpl" />
+	<bean id="daoFactory" class="by.epam.library.dao.factory.DAOFactory">
+		<property name="userDAO" ref="userDaoImpl" />
+		<property name="bookDAO" ref="bookDaoImpl" />
+		<property name="initializationDAO" ref="initDaoImpl" />
+	</bean>
+	-->
+
+</beans>

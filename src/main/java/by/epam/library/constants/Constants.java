@@ -1,0 +1,62 @@
+package by.epam.library.constants;
+
+public class Constants {
+	
+	public static final String USER_WAS_REGISTERED = "User was registered: ";
+	public static final String SIGN_UP_ERROR = "Sign up error.";
+	public static final String SIGN_IN_ERROR = "Sign in error.";
+	public static final String INIT_SOURCE = "initialization_source ";
+	public static final String SIGN_UP_VASILIY_PUPKIN = "sign_up Василий_Пупкин 12345678";
+	public static final String SIGN_IN_VASILIY_PUPKIN = "sign_in Василий_Пупкин 12345678";
+	public static final String WELCOME = "Welcome: ";
+	public static final String SPACE = " ";
+	public static final String PARAMETER_DELIMETER = " ";
+	public static final String ADD_NEW_BOOK_VASYA_PUPKIN_2017 = "add_new_book MyBook Action Vasya_Pupkin 2017 2";
+	public static final String ADD_EDIT_BOOK_ID15 = "add_edit_book MyBook Action Petya_Pupkin 2017 2 15";
+	public static final String GET_BOOK_LIST = "get_booklist ";
+	public static final String REMOVE_BOOK_ID10 = "remove_book 10";
+	public static final String DESTROY_SOURCE = "destroy_source ";
+	public static final String DATABASE_HAS_BEEN_INITIALIZED = "Database has been initialized.";
+	public static final String DATABASE_HASNOT_BEEN_INITIALIZED = "Database has not been initialized.";
+	public static final String BOOK_ADDED = "Book successfully added.";
+	public static final String ERROR_ADDING_BOOK = "Error was occured during the adding a book operation.";
+	public static final String DATABASE_HAS_BEEN_DESTROYED = "Database has been destroyed.";
+	public static final String DATABASE_HASNOT_BEEN_DESTROYED = "Database has not been destroyed.";
+	public static final String BOOK_EDITED = "Book successfully edited.";
+	public static final String EDIT_BOOK_ERROR = "Error was occured during the editing a book operation";
+	public static final String LIST_OF_BOOKS_RECEIVED = "List of books received.";
+	public static final String ERROR_GETTING_BOOKS = "Error was occured during the getting a list of books operation.";
+	public static final String WRONG_REQUEST = "Wrong request!";
+	public static final String INCORRECT_BOOK_DATA = "Incorrect data about book.";
+	public static final String YEAR_FORMAT_ERROR = "Year format exception.";
+	public static final String ADDING_BOOK_TO_LIBRARY_ERROR = "Error adding a book to the library.";
+	public static final String BOOKLIST_NOT_FOUND = "Booklist not found.";
+	public static final String INIT_ERROR = "Error initialization was occured.";
+	public static final String DESTROY_ERROR = "Error destroy was occured.";
+	public static final String INCORRECT_LOGIN_PASSWORD = "Iccorrent user's login or password.";
+	public static final String USER_NOT_FOUND = "User is not found.";
+	public static final String CONNECTING_TO_DB_ERROR = "There was a problem connecting to the database.";
+	public static final String EXECUTE_QUERY_INSERT_BOOK_ERROR = "Error was occured during executing the query 'insert_book'.";
+	public static final String EXECUTE_QUERY_UPDATE_BOOK_ERROR = "Error executing the query 'update_book'.";
+	public static final String EXECUTE_QUERY_SELECT_BOOK_ERROR = "Error executing the query 'select_book'.";
+	public static final String INIT_DB_ERROR = "There was a problem initialization database.";
+	public static final String CLOSE_CONNECTIONS_ERROR = "Failure to close all connections.";
+	public static final String EXECUTE_QUERY_SELECT_USER_ERROR = "Error executing the query 'select_user_id_by_login_password'.";
+	public static final String DB_DRIVER_NOT_FOUND = "Can't find database driver class.";
+	public static final String SQL_EXCEPTION_IN_CONNECTIONPOOL = "SQLException in ConnectionPool.";
+	public static final String CONNECTING_TO_DATA_SOURCE_ERROR = "Error connecting to the data source.";
+	public static final String CONNECTION_IS_NULL = "Connection is null.";
+	public static final Object CONNECTION_NOT_RETURNED = "Connection isn't return to the pool.";
+	public static final Object STATEMENT_NOT_CLOSED = "Statement isn't closed.";
+	public static final Object PREPARED_STATEMENT_NOT_CLOSED = "PrepareStatement ins't closed.";
+	public static final Object RESULT_SET_NOT_CLOSED = "ResultSet ins't closed.";
+	public static final String DATABASE = "database";
+	public static final String BOOK_REMOVED = "Book was successfully removed.";
+	public static final String REMOVE_BOOK_ERROR = "Error was occured during remove a book operation.";
+	public static final String EXECUTE_QUERY_REMOVE_BOOK_ERROR = "Error executing the query 'remove_book'.";
+	public static final String SERVICE_FACTORY = "serviceFactory";
+	public static final String COMMAND_PROVIDER = "commandProvider";
+	public static final String APPLICATION_CONTEXT = "applicationContext.xml";
+	public static final String DAO_FACTORY = "daoFactory";
+	
+}
