@@ -29,7 +29,7 @@ public class AddNewBook implements Command {
 		BookService bookService = serviceFactory.getBookService();
 		String response = null;
 		try {
-			bookService.addNewBook(title, genre, author, year, quantity);
+			bookService.addNewBook(title, genre, author, year, quantity, context);
 			response = Constants.BOOK_ADDED;
 		} catch (ServiceException e) {
 			response = Constants.ERROR_ADDING_BOOK;

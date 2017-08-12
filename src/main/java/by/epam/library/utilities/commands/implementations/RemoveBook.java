@@ -20,7 +20,7 @@ public class RemoveBook implements Command {
 		BookService bookService = serviceFactory.getBookService();
 		String response = null;
 		try {
-			bookService.removeBook(idBook);
+			bookService.removeBook(idBook, context);
 			response = Constants.BOOK_REMOVED;
 		} catch (ServiceException e) {
 			response = Constants.REMOVE_BOOK_ERROR;

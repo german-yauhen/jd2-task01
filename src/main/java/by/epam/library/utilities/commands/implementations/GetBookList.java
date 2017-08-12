@@ -21,7 +21,7 @@ public class GetBookList implements Command {
 		List<Book> booklist = null;
 		String response = null;
 		try {
-			booklist = bookService.getBooklist();			
+			booklist = bookService.getBooklist(context);			
 			for(Book book: booklist){
 				PrintResponse.out(book.getAuthor() + Constants.SPACE + book.getTitle());
 			}

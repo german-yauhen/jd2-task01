@@ -24,7 +24,7 @@ public class SignUp implements Command {
 		UserService userService = serviceFactory.getUserService();
 		String response = null;
 		try {
-			userService.signUp(login, password);
+			userService.signUp(login, password, context);
 			response = Constants.USER_WAS_REGISTERED + login;
 		} catch (ServiceException e) { 
 			response = Constants.SIGN_UP_ERROR;

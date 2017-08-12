@@ -16,7 +16,7 @@ public class InitializationSource implements Command {
 		InitializationService initializationService = serviceFactory.getInitializationService();
 		String response = null;
 		try {
-			initializationService.initialization();
+			initializationService.initialization(context);
 			response = Constants.DATABASE_HAS_BEEN_INITIALIZED;
 		} catch (ServiceException e) {
 			response = Constants.DATABASE_HASNOT_BEEN_INITIALIZED;

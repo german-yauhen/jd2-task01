@@ -19,6 +19,6 @@ public class TestUserServiceImpl {
 	public void signUp() throws ServiceException {
 		ServiceFactory factory = context.getBean(Constants.SERVICE_FACTORY, ServiceFactory.class);;
 		UserService userService = factory.getUserService();
-		userService.signUp(LOGIN_PARAM, PASSWORD_PARAM);
+		userService.signUp(LOGIN_PARAM, PASSWORD_PARAM, null);
 	}
 }

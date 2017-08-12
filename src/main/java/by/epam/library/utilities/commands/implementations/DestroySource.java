@@ -16,7 +16,7 @@ public class DestroySource implements Command {
 		InitializationService initializationService = serviceFactory.getInitializationService();
 		String response = null;
 		try {
-			initializationService.destroy();
+			initializationService.destroy(context);
 			response = Constants.DATABASE_HAS_BEEN_DESTROYED;
 		} catch (ServiceException e) {
 			response = Constants.DATABASE_HASNOT_BEEN_DESTROYED;

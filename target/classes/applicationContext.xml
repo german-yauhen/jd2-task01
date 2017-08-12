@@ -21,7 +21,6 @@
 		<property name="initializationService" ref="initServiceImpl" />
 	</bean>
 
-	<!--
 	<bean id="bookDaoImpl" class="by.epam.library.dao.implementations.BookDAOImpl" />
 	<bean id="initDaoImpl" class="by.epam.library.dao.implementations.InitializationDAOImpl" />
 	<bean id="userDaoImpl" class="by.epam.library.dao.implementations.UserDAOImpl" />
@@ -30,6 +29,5 @@
 		<property name="bookDAO" ref="bookDaoImpl" />
 		<property name="initializationDAO" ref="initDaoImpl" />
 	</bean>
-	-->
 
 </beans>

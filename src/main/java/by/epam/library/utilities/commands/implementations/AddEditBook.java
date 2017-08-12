@@ -30,7 +30,7 @@ public class AddEditBook implements Command {
 		BookService bookService = serviceFactory.getBookService();
 		String response = null;
 		try {
-			bookService.addEditBook(title, genre, author, year, quantity, idBook);
+			bookService.addEditBook(title, genre, author, year, quantity, idBook, context);
 			response = Constants.BOOK_EDITED;
 		} catch (ServiceException e) {
 			response = Constants.EDIT_BOOK_ERROR;

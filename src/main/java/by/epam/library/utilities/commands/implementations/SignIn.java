@@ -23,7 +23,7 @@ public class SignIn implements Command {
 		UserService userService = serviceFactory.getUserService();
 		String response = null;
 		try {
-			userService.signIn(login, password);
+			userService.signIn(login, password, context);
 			response = Constants.WELCOME + login;
 		} catch (ServiceException e) { 
 			response = Constants.SIGN_IN_ERROR;
