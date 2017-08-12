@@ -5,6 +5,7 @@ import by.epam.library.dao.InitializationDAO;
 import by.epam.library.dao.UserDAO;
 
 public final class DAOFactory {
+	
 	private UserDAO userDAO;
 	private BookDAO bookDAO;
 	private InitializationDAO initializationDAO;

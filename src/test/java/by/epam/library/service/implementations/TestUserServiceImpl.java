@@ -9,16 +9,15 @@ import by.epam.library.service.exception.ServiceException;
 import by.epam.library.service.factory.ServiceFactory;
 
 public class TestUserServiceImpl {
-	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
-	private static final String LOGIN_PARAM = "Dylan O'Brien";
-	private static final String PASSWORD_PARAM = "12345678";
-/*	Зарегистрировать пользователя не получиться, т.к. мы не инициализировали ConnectionPool
- 	Соответственно когда берем Connection получаем NullPointerException.
-*/
+	
+	private final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	private final String LOGIN_PARAM = "Dylan O'Brien";
+	private final String PASSWORD_PARAM = "12345678";
+
 	@Test (expected = NullPointerException.class)
 	public void signUp() throws ServiceException {
 		ServiceFactory factory = context.getBean(Constants.SERVICE_FACTORY, ServiceFactory.class);;
 		UserService userService = factory.getUserService();
-		userService.signUp(LOGIN_PARAM, PASSWORD_PARAM, null);
+		userService.signUp(LOGIN_PARAM, PASSWORD_PARAM);
 	}
 }

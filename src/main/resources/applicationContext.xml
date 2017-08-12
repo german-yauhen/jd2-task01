@@ -8,13 +8,66 @@
     http://www.springframework.org/schema/aop 
    	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	<bean id="commandProvider" class="by.epam.library.utilities.commands.CommandProvider" />
+	<bean id="controller" class="by.epam.library.utilities.controller.Controller"/>
 	
-	<bean id="dbResourceManager" class="by.epam.library.dao.connection.manager.DBResourceManager" />
+	<bean id="initSource" class="by.epam.library.utilities.commands.implementations.InitializationSource" />
+	<bean id="destroySource" class="by.epam.library.utilities.commands.implementations.DestroySource" />
+	<bean id="addNewBook" class="by.epam.library.utilities.commands.implementations.AddNewBook" />
+	<bean id="signIn" class="by.epam.library.utilities.commands.implementations.SignIn" />
+	<bean id="signUp" class="by.epam.library.utilities.commands.implementations.SignUp" />
+	<bean id="addEditBook" class="by.epam.library.utilities.commands.implementations.AddEditBook" />
+	<bean id="getBookList" class="by.epam.library.utilities.commands.implementations.GetBookList" />
+	<bean id="removeBook" class="by.epam.library.utilities.commands.implementations.RemoveBook" />
+	<bean id="wrongRequest" class="by.epam.library.utilities.commands.implementations.WrongRequest" />
+	
+	<bean id="init-source" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="INITIALIZATION_SOURCE" />
+	</bean>
+	<bean id="destroy-source" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="DESTROY_SOURCE" />
+	</bean>
+	<bean id="add-new-book" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="ADD_NEW_BOOK" />
+	</bean>
+	<bean id="sign-in" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="SIGN_IN" />
+	</bean>
+	<bean id="sign-up" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="SIGN_UP" />
+	</bean>
+	<bean id="add-edit-book" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="ADD_EDIT_BOOK" />
+	</bean>
+	<bean id="get-book-list" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="GET_BOOKLIST" />
+	</bean>
+	<bean id="remove-book" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="REMOVE_BOOK" />
+	</bean>
+	<bean id="wrong-request" class="by.epam.library.utilities.commands.CommandName" factory-method="valueOf">
+		<constructor-arg value="WRONG_REQUEST" />
+	</bean>
+	
+	<bean id="commandProvider" class="by.epam.library.utilities.commands.CommandProvider" >
+		<constructor-arg name="repository">
+			<map>
+				<entry key-ref="init-source" value-ref="initSource" />
+				<entry key-ref="destroy-source" value-ref="destroySource" />
+				<entry key-ref="add-new-book" value-ref="addNewBook" />
+				<entry key-ref="sign-in" value-ref="signIn" />
+				<entry key-ref="sign-up" value-ref="signUp" />
+				<entry key-ref="add-edit-book" value-ref="addEditBook" />
+				<entry key-ref="get-book-list" value-ref="getBookList" />
+				<entry key-ref="remove-book" value-ref="removeBook" />
+				<entry key-ref="wrong-request" value-ref="wrongRequest" />
+			</map>
+		</constructor-arg>
+	</bean>
 
 	<bean id="userServiceImpl" class="by.epam.library.service.implementation.UserServiceImpl" />
 	<bean id="bookServiceImpl" class="by.epam.library.service.implementation.BookServiceImpl" />
 	<bean id="initServiceImpl" class="by.epam.library.service.implementation.InitializationServiceImpl" />
+	
 	<bean id="serviceFactory" class="by.epam.library.service.factory.ServiceFactory">
 		<property name="userService" ref="userServiceImpl" />
 		<property name="bookService" ref="bookServiceImpl" />
@@ -24,10 +77,11 @@
 	<bean id="bookDaoImpl" class="by.epam.library.dao.implementations.BookDAOImpl" />
 	<bean id="initDaoImpl" class="by.epam.library.dao.implementations.InitializationDAOImpl" />
 	<bean id="userDaoImpl" class="by.epam.library.dao.implementations.UserDAOImpl" />
+	
 	<bean id="daoFactory" class="by.epam.library.dao.factory.DAOFactory">
 		<property name="userDAO" ref="userDaoImpl" />
 		<property name="bookDAO" ref="bookDaoImpl" />
 		<property name="initializationDAO" ref="initDaoImpl" />
 	</bean>
-
+	
 </beans>

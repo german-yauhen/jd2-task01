@@ -15,7 +15,8 @@ import by.epam.library.service.exception.ServiceException;
 import by.epam.library.service.factory.ServiceFactory;
 
 public class TestBookServiceImpl {
-	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	
+	private final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
 	private final ServiceFactory serviceFactory = context.getBean(Constants.SERVICE_FACTORY, ServiceFactory.class);
 	private final BookService bookService = serviceFactory.getBookService();
 	private final String AUTHOR_PARAM = "MyAuthor";
@@ -40,13 +41,13 @@ public class TestBookServiceImpl {
 	
 	@Test  (expected = ServiceException.class)
 	public void testAddNewBook() throws ServiceException{ 
-		bookService.addNewBook(null, null, null, null, null,null);
+		bookService.addNewBook(null, null, null, null, null);
 	}
 
 	@Test
 	public void testAddEditBook(){
 		try {
-			bookService.addEditBook(null, AUTHOR_PARAM, GENRE_PARAM, YEAR_PARAM, QUANTITY_PARAM, ID_BOOK_PARAM, null);
+			bookService.addEditBook(null, AUTHOR_PARAM, GENRE_PARAM, YEAR_PARAM, QUANTITY_PARAM, ID_BOOK_PARAM);
 		} catch (ServiceException e) {
 			Assert.assertEquals(Constants.INCORRECT_BOOK_DATA, e.getMessage());
 		}

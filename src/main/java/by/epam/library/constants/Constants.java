@@ -42,6 +42,7 @@ public class Constants {
 	public static final String INIT_DB_ERROR = "There was a problem initialization database.";
 	public static final String CLOSE_CONNECTIONS_ERROR = "Failure to close all connections.";
 	public static final String EXECUTE_QUERY_SELECT_USER_ERROR = "Error executing the query 'select_user_id_by_login_password'.";
+	public static final String EXECUTE_QUERY_INSERT_USER_ERROR = "Error executing the query 'insert_user'.";
 	public static final String DB_DRIVER_NOT_FOUND = "Can't find database driver class.";
 	public static final String SQL_EXCEPTION_IN_CONNECTIONPOOL = "SQLException in ConnectionPool.";
 	public static final String CONNECTING_TO_DATA_SOURCE_ERROR = "Error connecting to the data source.";
@@ -58,5 +59,7 @@ public class Constants {
 	public static final String COMMAND_PROVIDER = "commandProvider";
 	public static final String APPLICATION_CONTEXT = "applicationContext.xml";
 	public static final String DAO_FACTORY = "daoFactory";
+	public static final String DB_RESOURCE_MANAGER = "dbResourceManager";
+	public static final String CONNECTION_POOL = "connectionPool";
 	
 }

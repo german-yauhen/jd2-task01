@@ -1,7 +1,7 @@
 package by.epam.library.service.implementation;
 
 import org.springframework.context.ApplicationContext;
-
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import by.epam.library.constants.Constants;
 import by.epam.library.dao.UserDAO;
 import by.epam.library.dao.exception.DAOException;
@@ -12,15 +12,17 @@ import by.epam.library.service.exception.ServiceException;
 import by.epam.library.service.validation.ValidationData;
 
 public class UserServiceImpl implements UserService {
+	
+	private DAOFactory daoFactory;
+	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
 
 	@Override
-	public void signIn(String login, String password, ApplicationContext context) throws ServiceException {
-		if(!ValidationData.validUser(login, password)){
+	public void signIn(String login, String password) throws ServiceException {
+		if (!ValidationData.validUser(login, password)) {
 			throw new ServiceException(Constants.INCORRECT_LOGIN_PASSWORD);
 		}
-		DAOFactory daoFactory = context.getBean(Constants.DAO_FACTORY, DAOFactory.class);
+		daoFactory = context.getBean(Constants.DAO_FACTORY, DAOFactory.class);
 		UserDAO userDAO = daoFactory.getUserDAO();
-		//Attention String_paswword convert to int_password(HashCode)
 		try {
 			User user = userDAO.signIn(login, password.hashCode());
 			if(user == null){
@@ -32,13 +34,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void signUp(String login, String password, ApplicationContext context) throws ServiceException {
-		if(!ValidationData.validUser(login, password)){
+	public void signUp(String login, String password) throws ServiceException {
+		if (!ValidationData.validUser(login, password)) {
 			throw new ServiceException(Constants.INCORRECT_LOGIN_PASSWORD);
 		}
-		DAOFactory daoFactory = context.getBean(Constants.DAO_FACTORY, DAOFactory.class);
+		daoFactory = context.getBean(Constants.DAO_FACTORY, DAOFactory.class);
 		UserDAO userDAO = daoFactory.getUserDAO();
-		//Attention String_paswword convert to int_password(HashCode)
 		try {
 			userDAO.signUp(login, password.hashCode());
 		} catch (DAOException e) {

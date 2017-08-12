@@ -1,7 +1,6 @@
 package by.epam.library.dao.connection.manager;
 
 import java.util.ResourceBundle;
-
 import by.epam.library.constants.Constants;
 
 public final class DBResourceManager {
