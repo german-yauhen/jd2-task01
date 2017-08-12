@@ -15,6 +15,8 @@ import by.epam.library.service.exception.ServiceException;
 import by.epam.library.service.validation.ValidationData;
 
 public class BookServiceImpl implements BookService {
+	
+	private DAOFactory daoFactory;
 
 	@Override
 	public void addNewBook(String title, String genre, String author, String year, String quantityStr, ApplicationContext context) throws ServiceException {
