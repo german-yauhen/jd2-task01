@@ -16,7 +16,7 @@ import by.epam.library.service.factory.ServiceFactory;
 
 public class TestBookServiceImpl {
 	
-	private final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
 	private final ServiceFactory serviceFactory = context.getBean(Constants.SERVICE_FACTORY, ServiceFactory.class);
 	private final BookService bookService = serviceFactory.getBookService();
 	private final String AUTHOR_PARAM = "MyAuthor";
@@ -28,13 +28,13 @@ public class TestBookServiceImpl {
 	
 	@BeforeClass
 	public static void initSource() throws ConnectionPoolException{
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		ConnectionPool connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		connectionPool.init();
 	}
 
 	@AfterClass
 	public static void destroySource() throws ConnectionPoolException, IOException{
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		ConnectionPool connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		connectionPool.close();
 	}
 	

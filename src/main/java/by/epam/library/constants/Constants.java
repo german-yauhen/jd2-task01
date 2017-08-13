@@ -61,5 +61,6 @@ public class Constants {
 	public static final String DAO_FACTORY = "daoFactory";
 	public static final String DB_RESOURCE_MANAGER = "dbResourceManager";
 	public static final String CONNECTION_POOL = "connectionPool";
+	public static final String CONTROLLER = "controller";
 	
 }

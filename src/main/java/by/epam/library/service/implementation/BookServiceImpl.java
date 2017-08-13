@@ -14,9 +14,9 @@ import by.epam.library.service.exception.ServiceException;
 import by.epam.library.service.validation.ValidationData;
 
 public class BookServiceImpl implements BookService {
-	
-	private DAOFactory daoFactory;
+
 	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	private DAOFactory daoFactory;
 
 	@Override
 	public void addNewBook(String title, String genre, String author, String year, String quantityStr)
@@ -40,8 +40,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public void addEditBook(String title, String genre, String author, String year, String quantityStr, String idBookStr)
-			throws ServiceException {
+	public void addEditBook(String title, String genre, String author, String year, String quantityStr,
+			String idBookStr) throws ServiceException {
 		if (!ValidationData.validBook(title, genre, author, year, quantityStr, idBookStr)) {
 			throw new ServiceException(Constants.INCORRECT_BOOK_DATA);
 		}
@@ -55,7 +55,7 @@ public class BookServiceImpl implements BookService {
 			throw new ServiceException(Constants.EDIT_BOOK_ERROR);
 		}
 	}
-	
+
 	@Override
 	public void removeBook(String idBookStr) throws ServiceException {
 		int idBook = Integer.parseInt(idBookStr);

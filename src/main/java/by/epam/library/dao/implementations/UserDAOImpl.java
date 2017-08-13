@@ -1,6 +1,8 @@
 package by.epam.library.dao.implementations;
 
 import java.sql.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import by.epam.library.constants.Constants;
 import by.epam.library.dao.UserDAO;
 import by.epam.library.dao.connection.ConnectionPool;
@@ -11,10 +13,13 @@ import by.epam.library.dao.exception.DAOException;
 import by.epam.library.entities.User;
 
 public class UserDAOImpl implements UserDAO {
+	
+	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	private ConnectionPool connectionPool;
 
 	@Override
 	public User signIn(String login, int password) throws DAOException {
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		PreparedStatement preparedStatement = null;
 		Connection connection = null;
 		ResultSet resultSet = null;
@@ -43,7 +48,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void signUp(String login, int password) throws DAOException {
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {

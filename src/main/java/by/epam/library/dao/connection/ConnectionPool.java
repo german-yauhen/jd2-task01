@@ -8,6 +8,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import by.epam.library.constants.Constants;
 import by.epam.library.dao.connection.manager.DBParameter;
 import by.epam.library.dao.connection.manager.DBResourceManager;
@@ -15,9 +17,11 @@ import by.epam.library.dao.exception.ConnectionPoolException;
 import by.epam.library.dao.exception.DAOException;
 
 public final class ConnectionPool implements Closeable {
+
 	private static final Logger logger = Logger.getLogger(ConnectionPool.class);
 	private static final ConnectionPool instance = new ConnectionPool();
 	private static final int poolSizeValue = 6;
+	private ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
 	private BlockingQueue<Connection> freeConnection;
 	private BlockingQueue<Connection> busyConnection;
 	private int poolsize;
@@ -27,12 +31,11 @@ public final class ConnectionPool implements Closeable {
 	private String url;
 
 	private ConnectionPool() {
-		DBResourceManager resourceManager = DBResourceManager.getInstance();
+		DBResourceManager resourceManager = context.getBean(Constants.DB_RESOURCE_MANAGER, DBResourceManager.class);
 		this.driver = resourceManager.getValue(DBParameter.DB_DRIVER);
 		this.user = resourceManager.getValue(DBParameter.DB_USER);
 		this.password = resourceManager.getValue(DBParameter.DB_PASSWORD);
 		this.url = resourceManager.getValue(DBParameter.DB_URL);
-
 		try {
 			this.poolsize = Integer.parseInt(resourceManager.getValue(DBParameter.DB_POOLSIZE));
 		} catch (NumberFormatException e) {
@@ -40,10 +43,13 @@ public final class ConnectionPool implements Closeable {
 		}
 	}
 
+	public static ConnectionPool getInstance() {
+		return instance;
+	}
+
 	public void init() throws ConnectionPoolException {
 		freeConnection = new ArrayBlockingQueue<Connection>(poolsize);
 		busyConnection = new ArrayBlockingQueue<Connection>(poolsize);
-
 		try {
 			Class.forName(driver);
 			for (int i = 0; i < poolsize; i++) {
@@ -54,7 +60,6 @@ public final class ConnectionPool implements Closeable {
 		} catch (SQLException e) {
 			throw new ConnectionPoolException(Constants.SQL_EXCEPTION_IN_CONNECTIONPOOL, e);
 		}
-
 	}
 
 	public Connection take() throws ConnectionPoolException {
@@ -76,10 +81,6 @@ public final class ConnectionPool implements Closeable {
 		connection = null;
 		busyConnection.remove(tempConnection);
 		freeConnection.put(tempConnection);
-	}
-
-	public static ConnectionPool getInstance() {
-		return instance;
 	}
 
 	@Override

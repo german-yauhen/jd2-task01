@@ -10,7 +10,7 @@ import by.epam.library.service.factory.ServiceFactory;
 
 public class TestUserServiceImpl {
 	
-	private final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
 	private final String LOGIN_PARAM = "Dylan O'Brien";
 	private final String PASSWORD_PARAM = "12345678";
 

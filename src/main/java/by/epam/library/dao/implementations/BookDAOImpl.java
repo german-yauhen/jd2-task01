@@ -2,6 +2,8 @@ package by.epam.library.dao.implementations;
 
 import java.sql.*;
 import java.util.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import by.epam.library.constants.Constants;
 import by.epam.library.dao.BookDAO;
 import by.epam.library.dao.connection.ConnectionPool;
@@ -12,10 +14,13 @@ import by.epam.library.dao.exception.DAOException;
 import by.epam.library.entities.Book;
 
 public class BookDAOImpl implements BookDAO {
-
+	
+	private static final ApplicationContext context = new ClassPathXmlApplicationContext(Constants.APPLICATION_CONTEXT);
+	private ConnectionPool connectionPool;
+	
 	@Override
 	public void addNewBook(String title, String author, String genre, String year, int quantity) throws DAOException {
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -39,7 +44,7 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public void addEditBook(String title, String genre, String author, String year, int quantity, int idBook)
 			throws DAOException {
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -63,7 +68,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public void removeBook(int idBook) throws DAOException {
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		Connection connection = null;
 		PreparedStatement statement = null;
 		try {
@@ -82,7 +87,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public List<Book> getBooklist() throws DAOException {
-		ConnectionPool connectionPool = ConnectionPool.getInstance();
+		connectionPool = context.getBean(Constants.CONNECTION_POOL, ConnectionPool.class);
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultSet = null;

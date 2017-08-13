@@ -84,4 +84,7 @@
 		<property name="initializationDAO" ref="initDaoImpl" />
 	</bean>
 	
+	<bean id="connectionPool" class="by.epam.library.dao.connection.ConnectionPool" factory-method="getInstance" />
+	
+	<bean id="dbResourceManager" class="by.epam.library.dao.connection.manager.DBResourceManager" />
 </beans>
